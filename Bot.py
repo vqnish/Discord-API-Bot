@@ -20,13 +20,7 @@ bot     = commands.Bot(command_prefix='.')
 # here is where to enter the placeholders that people may enter when using the bot.
 methods = ['ADDUSER', 'REMOVEUSER', 'CREATESERVER', 'DELETESERVER']            
 
-api_data = [
-    {
-        'api_url':'https://vanish.sh/Endpoints/apistart.php?key=', 
-        'api_key':'ihsdfih298BGD',              
-                      
-    }
-]
+client = PterodactylClient('panel-link', 'api-key')
 
 async def random_color():
     number_lol = random.randint(1, 999999)

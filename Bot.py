@@ -60,41 +60,7 @@ async def del_buyer(ctx, buyer : int = None):
         buyers.remove(buyer)
         await ctx.send('Removed them!!')
         
-        
-        
-        @bot.command()
-async def userinfo(ctx, *, arg1 = None):
-    user = client.user.list_users(search=str(arg1))
-    try:
-        user_id = user['data'][0]['attributes']['id']
-        username = user['data'][0]['attributes']['username']
-        first_name = user['data'][0]['attributes']['first_name']
-        last_name = user['data'][0]['attributes']['last_name']
-        email = user['data'][0]['attributes']['email']
-        language = user['data'][0]['attributes']['language']
-        admin = user['data'][0]['attributes']['root_admin']
-        twofa = user['data'][0]['attributes']['2fa']
-        created_at = user['data'][0]['attributes']['created_at']
-        dt = str(created_at)
-        t = datetime.strptime(dt, "%Y-%m-%dT%H:%M:%S%z")
-        pt = datetime.strftime(t, "%B %d, %Y %I:%M%p")
-
-        embed = discord.Embed(description="User Info",
-        colour=0x6a8dd3, timestamp=ctx.message.created_at)
-        embed.add_field(name="User ID", value=user_id, inline=True)
-        embed.add_field(name="Username", value=username, inline=True)
-        embed.add_field(name="Email", value=email, inline=True)
-        embed.add_field(name="First Name", value=first_name, inline=True)
-        embed.add_field(name="Last Name", value=last_name, inline=True)
-        embed.add_field(name="Admin Access", value=admin, inline=True)
-        embed.add_field(name="2FA", value=twofa, inline=True)
-        embed.add_field(name="Language", value=language, inline=True)
-        embed.add_field(name="Created At", value=pt, inline=True)
-        await ctx.send(embed=embed)
-    except IndexError:
-        embed = discord.Embed(description="User Not Found!",
-        colour=0xf95439, timestamp=ctx.message.created_at)
-        await ctx.send(embed=embed)
+      
         
 @bot.command()
 async def add_admin(ctx, admin : int = None):

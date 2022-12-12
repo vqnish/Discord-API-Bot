@@ -9,7 +9,6 @@ import aiohttp
 import random    
 import datetime
 import requests             
-from pydactyl import PterodactylClient
 
 #Put your buyer, admin and owner ids in this also add bot token.
 buyers  = [0000000, 0000000,0000000 ]              
@@ -20,8 +19,13 @@ bot     = commands.Bot(command_prefix='.')
 # here is where to enter the placeholders that people may enter when using the bot.
 methods = ['ADDUSER', 'REMOVEUSER', 'CREATESERVER', 'DELETESERVER']            
 
-client = PterodactylClient('panel-link', 'api-key')
-
+api_data = [
+    {
+        'api_url':'APILINK', # API URL #1
+        'api_key':'KEY',              
+    }
+   
+        
 async def random_color():
     number_lol = random.randint(1, 999999)
 
@@ -144,7 +148,6 @@ async def send(ctx, method : str = None, host1 : str = None, port : str = None, 
                         #You can edit this to whichever format your link is in.
                         await session.get(f"{api_url}{api_key}&host={host1}&port={port}&method={method}&username=")
 
-                        #print(f'{api_url}{api_key}&host={host1}&time={time2}&port={[port]}&method={method.upper()}')
 
                 except Exception as e:
                     #print(e)
@@ -160,7 +163,19 @@ async def send(ctx, method : str = None, host1 : str = None, port : str = None, 
             embed.add_field(name='Field', value=f'{host1}', inline=False)
             embed.add_field(name='Field', value=f'{port}', inline=False)
             embed.add_field(name='Field', value=f'{method}', inline=False)
-            
+                await ctx.send(embed=embed)
+
+    
+    if resp.status_code==200:
+    
+ embed = discord.Embed(
+                title = 'API Request Successful',
+                color = await random_color()
+            )
+            embed.set_footer(text='Vanish Services',
+            icon_url = 'https://media.discordapp.net/attachments/975792833862717450/976619016984592434/c3.jpg')
+            embed.set_image(url ='https://cdn.discordapp.com/attachments/975792833862717450/976336821942382622/28FD5650-F231-458B-BDA8-EC2D4A2CBC27.jpg')
+              
 
             
 

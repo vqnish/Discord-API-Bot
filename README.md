@@ -15,3 +15,6 @@ pip install aiohttp
 
 # WARNING
 This is just a sample project, I will not be responsible for any of your actions. This is only meant for educational purposes.
+
+
+# Database usage will be added to maximize the codes usage.

@@ -17,4 +17,5 @@ pip install aiohttp
 This is just a sample project, I will not be responsible for any of your actions. This is only meant for educational purposes.
 
 
-# Database usage will be added to maximize the codes usage.
+# Updates
+Database usage will be added soon to create the option of timed user plans.
